@@ -960,9 +960,6 @@
 <span id="915">915</span>
 <span id="916">916</span>
 <span id="917">917</span>
-<span id="918">918</span>
-<span id="919">919</span>
-<span id="920">920</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::{<span class="ident">HashMap</span>, <span class="ident">BTreeMap</span>, <span class="ident">VecDeque</span>};
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">error</span>;
@@ -971,10 +968,8 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Write</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">io</span>::<span class="ident">Error</span> <span class="kw">as</span> <span class="ident">IOError</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rustc_ser_type&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)))]</span>
-<span class="kw">use</span> <span class="ident">serialize</span>::<span class="ident">json</span>::{<span class="ident">ToJson</span>, <span class="ident">Json</span>};
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident">serde_json</span>::<span class="ident">value</span>::{<span class="ident">Value</span> <span class="kw">as</span> <span class="ident">Json</span>, <span class="ident">ToJson</span>};
+<span class="kw">use</span> <span class="ident">serde</span>::<span class="ident">Serialize</span>;
+<span class="kw">use</span> <span class="ident">serde_json</span>::<span class="ident">value</span>::{<span class="ident">Value</span> <span class="kw">as</span> <span class="ident">Json</span>};
 
 <span class="kw">use</span> <span class="ident">template</span>::{<span class="ident">Template</span>, <span class="ident">TemplateElement</span>, <span class="ident">Parameter</span>, <span class="ident">HelperTemplate</span>, <span class="ident">TemplateMapping</span>, <span class="ident">BlockParam</span>,
                <span class="ident">Directive</span> <span class="kw">as</span> <span class="ident">DirectiveTemplate</span>};
@@ -1178,7 +1173,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_block_context</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ctx</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>)
-        <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">ToJson</span>
+        <span class="kw">where</span> <span class="ident">T</span>: <span class="ident">Serialize</span>
     {
         <span class="self">self</span>.<span class="ident">block_context</span>.<span class="ident">push_front</span>(<span class="ident">Context</span>::<span class="ident">wraps</span>(<span class="ident">ctx</span>));
     }
@@ -1778,26 +1773,25 @@
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rustc_ser_type&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)))]</span>
 <span class="kw">fn</span> <span class="ident">test_render_context_promotion_and_demotion</span>() {
-    <span class="kw">use</span> <span class="ident">serialize</span>::<span class="ident">json</span>::<span class="ident">ToJson</span>;
+    <span class="kw">use</span> <span class="ident">context</span>::<span class="ident">to_json</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sw</span> <span class="op">=</span> <span class="ident">StringWriter</span>::<span class="ident">new</span>();
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ctx</span> <span class="op">=</span> <span class="ident">Context</span>::<span class="ident">null</span>();
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hlps</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">render_context</span> <span class="op">=</span> <span class="ident">RenderContext</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">ctx</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">hlps</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">sw</span>);
 
-    <span class="ident">render_context</span>.<span class="ident">set_local_var</span>(<span class="string">&quot;@index&quot;</span>.<span class="ident">to_string</span>(), <span class="number">0usize</span>.<span class="ident">to_json</span>());
+    <span class="ident">render_context</span>.<span class="ident">set_local_var</span>(<span class="string">&quot;@index&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">to_json</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
 
     <span class="ident">render_context</span>.<span class="ident">promote_local_vars</span>();
 
     <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">render_context</span>.<span class="ident">get_local_var</span>(<span class="kw-2">&amp;</span><span class="string">&quot;@../index&quot;</span>.<span class="ident">to_string</span>()).<span class="ident">unwrap</span>(),
-               <span class="kw-2">&amp;</span><span class="number">0usize</span>.<span class="ident">to_json</span>());
+               <span class="kw-2">&amp;</span><span class="ident">to_json</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
 
     <span class="ident">render_context</span>.<span class="ident">demote_local_vars</span>();
 
     <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">render_context</span>.<span class="ident">get_local_var</span>(<span class="kw-2">&amp;</span><span class="string">&quot;@index&quot;</span>.<span class="ident">to_string</span>()).<span class="ident">unwrap</span>(),
-               <span class="kw-2">&amp;</span><span class="number">0usize</span>.<span class="ident">to_json</span>());
+               <span class="kw-2">&amp;</span><span class="ident">to_json</span>(<span class="kw-2">&amp;</span><span class="number">0</span>));
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>

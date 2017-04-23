@@ -355,19 +355,9 @@
 <span id="310">310</span>
 <span id="311">311</span>
 <span id="312">312</span>
-<span id="313">313</span>
-<span id="314">314</span>
-<span id="315">315</span>
-<span id="316">316</span>
-<span id="317">317</span>
-<span id="318">318</span>
-<span id="319">319</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">BTreeMap</span>;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rustc_ser_type&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)))]</span>
-<span class="kw">use</span> <span class="ident">serialize</span>::<span class="ident">json</span>::<span class="ident">Json</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">serde_json</span>::<span class="ident">value</span>::<span class="ident">Value</span> <span class="kw">as</span> <span class="ident">Json</span>;
 
 <span class="kw">use</span> <span class="ident">helpers</span>::<span class="ident">HelperDef</span>;
@@ -496,9 +486,8 @@
     <span class="kw">use</span> <span class="ident">context</span>::<span class="ident">to_json</span>;
 
     <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">BTreeMap</span>;
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rustc_ser_type&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)))]</span>
-    <span class="kw">use</span> <span class="ident">serialize</span>::<span class="ident">json</span>::<span class="ident">Json</span>;
+    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">str</span>::<span class="ident">FromStr</span>;
+    <span class="kw">use</span> <span class="ident">serde_json</span>::<span class="ident">value</span>::<span class="ident">Value</span> <span class="kw">as</span> <span class="ident">Json</span>;
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_each</span>() {
@@ -520,7 +509,6 @@
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rustc_ser_type&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)))]</span>
     <span class="kw">fn</span> <span class="ident">test_each_with_parent</span>() {
 
         <span class="kw">let</span> <span class="ident">json_str</span> <span class="op">=</span> <span class="string">r#&quot;{&quot;a&quot;:{&quot;a&quot;:99,&quot;c&quot;:[{&quot;d&quot;:100},{&quot;d&quot;:200}]}}&quot;#</span>;
@@ -541,7 +529,6 @@
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rustc_ser_type&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)))]</span>
     <span class="kw">fn</span> <span class="ident">test_nested_each_with_parent</span>() {
 
         <span class="kw">let</span> <span class="ident">json_str</span> <span class="op">=</span> <span class="string">r#&quot;{&quot;a&quot;: [{&quot;b&quot;: [{&quot;d&quot;: 100}], &quot;c&quot;: 200}]}&quot;#</span>;
@@ -555,7 +542,6 @@
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;rustc_ser_type&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;serde_type&quot;</span>)))]</span>
     <span class="kw">fn</span> <span class="ident">test_nested_each</span>() {
 
         <span class="kw">let</span> <span class="ident">json_str</span> <span class="op">=</span> <span class="string">r#&quot;{&quot;a&quot;: [{&quot;b&quot;: true}], &quot;b&quot;: [[1, 2, 3],[4, 5]]}&quot;#</span>;
