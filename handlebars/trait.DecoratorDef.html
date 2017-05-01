@@ -52,11 +52,14 @@
 <pre class='rust trait'>pub trait DecoratorDef: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> {
     fn <a href='#tymethod.call' class='fnname'>call</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d: &amp;<a class="struct" href="../handlebars/struct.Decorator.html" title="struct handlebars::Decorator">Directive</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r: &amp;<a class="struct" href="../handlebars/struct.Handlebars.html" title="struct handlebars::Handlebars">Registry</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rc: &amp;mut <a class="struct" href="../handlebars/struct.RenderContext.html" title="struct handlebars::RenderContext">RenderContext</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>, <a class="struct" href="../handlebars/struct.RenderError.html" title="struct handlebars::RenderError">RenderError</a>&gt;;
 }</pre><div class='docblock'><p>Decorator Definition</p>
+
 <p>Implement this trait to define your own decorators or directives. Currently
 decorator shares same definition with helper.</p>
+
 <p>In handlebars, it is recommanded to use decorator to change context data and update helper
 definition.</p>
-<h2 id="updating-context-data" class="section-header"><a href="#updating-context-data">Updating context data</a></h2>
+
+<h2 id='updating-context-data' class='section-header'><a href='#updating-context-data'>Updating context data</a></h2>
 <p>In decorator, you can change some context data your are about to render.</p>
 
 <pre class="rust rust-example-rendered">
@@ -72,7 +75,8 @@ definition.</p>
     <span class="prelude-val">Ok</span>(())
 }
 </pre>
-<h2 id="define-local-helper" class="section-header"><a href="#define-local-helper">Define local helper</a></h2>
+
+<h2 id='define-local-helper' class='section-header'><a href='#define-local-helper'>Define local helper</a></h2>
 <p>You can override behavior of a helper from position of decorator to the end of template.</p>
 
 <pre class="rust rust-example-rendered">

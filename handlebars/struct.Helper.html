@@ -57,7 +57,8 @@
 <div class='docblock'><p>Returns all helper params, resolved within the context</p>
 </div><h4 id='method.param' class="method"><span id='param.v' class='invisible'><code>fn <a href='#method.param' class='fnname'>param</a>(&amp;self, idx: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../handlebars/struct.ContextJson.html" title="struct handlebars::ContextJson">ContextJson</a>&gt;</code></span></h4>
 <div class='docblock'><p>Returns nth helper param, resolved within the context.</p>
-<h2 id="example" class="section-header"><a href="#example">Example</a></h2>
+
+<h2 id='example' class='section-header'><a href='#example'>Example</a></h2>
 <p>To get the first param in <code>{{my_helper abc}}</code> or <code>{{my_helper 2}}</code>,
 use <code>h.param(0)</code> in helper definition.
 Variable <code>abc</code> is auto resolved in current context.</p>
@@ -74,7 +75,8 @@ Variable <code>abc</code> is auto resolved in current context.</p>
 <div class='docblock'><p>Returns hash, resolved within the context</p>
 </div><h4 id='method.hash_get' class="method"><span id='hash_get.v' class='invisible'><code>fn <a href='#method.hash_get' class='fnname'>hash_get</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../handlebars/struct.ContextJson.html" title="struct handlebars::ContextJson">ContextJson</a>&gt;</code></span></h4>
 <div class='docblock'><p>Return hash value of a given key, resolved within the context</p>
-<h2 id="example-1" class="section-header"><a href="#example-1">Example</a></h2>
+
+<h2 id='example-1' class='section-header'><a href='#example-1'>Example</a></h2>
 <p>To get the first param in <code>{{my_helper v=abc}}</code> or <code>{{my_helper v=2}}</code>,
 use <code>h.hash_get(&quot;v&quot;)</code> in helper definition.
 Variable <code>abc</code> is auto resolved in current context.</p>
@@ -89,6 +91,7 @@ Variable <code>abc</code> is auto resolved in current context.</p>
 }</pre>
 </div><h4 id='method.template' class="method"><span id='template.v' class='invisible'><code>fn <a href='#method.template' class='fnname'>template</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../handlebars/struct.Template.html" title="struct handlebars::Template">Template</a>&gt;</code></span></h4>
 <div class='docblock'><p>Returns the default inner template if the helper is a block helper.</p>
+
 <p>Typically you will render the template via: <code>template.render(registry, render_context)</code></p>
 </div><h4 id='method.inverse' class="method"><span id='inverse.v' class='invisible'><code>fn <a href='#method.inverse' class='fnname'>inverse</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../handlebars/struct.Template.html" title="struct handlebars::Template">Template</a>&gt;</code></span></h4>
 <div class='docblock'><p>Returns the template of <code>else</code> branch if any</p>
