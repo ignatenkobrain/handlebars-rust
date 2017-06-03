@@ -253,13 +253,15 @@
 <span id="208">208</span>
 <span id="209">209</span>
 <span id="210">210</span>
+<span id="211">211</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">BTreeMap</span>;
 
 <span class="kw">use</span> <span class="ident">helpers</span>::<span class="ident">HelperDef</span>;
 <span class="kw">use</span> <span class="ident">registry</span>::<span class="ident">Registry</span>;
 <span class="kw">use</span> <span class="ident">context</span>::{<span class="ident">JsonTruthy</span>, <span class="ident">to_json</span>};
-<span class="kw">use</span> <span class="ident">render</span>::{<span class="ident">Renderable</span>, <span class="ident">RenderContext</span>, <span class="ident">RenderError</span>, <span class="ident">Helper</span>};
+<span class="kw">use</span> <span class="ident">render</span>::{<span class="ident">Renderable</span>, <span class="ident">RenderContext</span>, <span class="ident">Helper</span>};
+<span class="kw">use</span> <span class="ident">error</span>::<span class="ident">RenderError</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WithHelper</span>;

@@ -357,7 +357,6 @@
 <span id="312">312</span>
 <span id="313">313</span>
 <span id="314">314</span>
-<span id="315">315</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! # Handlebars</span>
 <span class="doccomment">//!</span>
@@ -655,9 +654,9 @@
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">serde_json</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">template</span>::<span class="ident">Template</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">error</span>::{<span class="ident">TemplateError</span>, <span class="ident">TemplateFileError</span>, <span class="ident">TemplateRenderError</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">error</span>::{<span class="ident">RenderError</span>, <span class="ident">TemplateError</span>, <span class="ident">TemplateFileError</span>, <span class="ident">TemplateRenderError</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">registry</span>::{<span class="ident">EscapeFn</span>, <span class="ident">no_escape</span>, <span class="ident">html_escape</span>, <span class="ident">Registry</span> <span class="kw">as</span> <span class="ident">Handlebars</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">render</span>::{<span class="ident">Renderable</span>, <span class="ident">Evaluable</span>, <span class="ident">RenderError</span>, <span class="ident">RenderContext</span>, <span class="ident">Helper</span>, <span class="ident">ContextJson</span>,
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">render</span>::{<span class="ident">Renderable</span>, <span class="ident">Evaluable</span>, <span class="ident">RenderContext</span>, <span class="ident">Helper</span>, <span class="ident">ContextJson</span>,
                        <span class="ident">Directive</span> <span class="kw">as</span> <span class="ident">Decorator</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">helpers</span>::<span class="ident">HelperDef</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">directives</span>::<span class="ident">DirectiveDef</span> <span class="kw">as</span> <span class="ident">DecoratorDef</span>;
@@ -672,7 +671,6 @@
 <span class="kw">mod</span> <span class="ident">context</span>;
 <span class="kw">mod</span> <span class="ident">support</span>;
 <span class="kw">mod</span> <span class="ident">directives</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;partial_legacy&quot;</span>))]</span>
 <span class="kw">mod</span> <span class="ident">partial</span>;
 </pre>
 </section>
